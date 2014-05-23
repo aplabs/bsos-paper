@@ -1,0 +1,4 @@
+# Ignore compiler output that isn't a PDF.
+*.gz
+*.txt
+*.aux
