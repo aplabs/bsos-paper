@@ -8,7 +8,7 @@
 \makeatletter
 \pagestyle{empty}
 \usepackage{tikz}
-\usetikzlibrary{arrows,shadows} % for pgf-umlsd
+\usetikzlibrary{arrows,shadows}
 \usepackage[underline=true,rounded corners=false]{pgf-umlsd}
 
 \makeatother
@@ -16,35 +16,27 @@
 \usepackage{babel}
 \begin{document}
 
+\tikzstyle{decision} = [diamond, draw, fill=blue!20, 
+    text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, 
+    text width=5em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
+    minimum height=2em]
+
 \title{BSOS}
-
-
 \author{Alexander Gould, William Woodruff, Pawe\l{} Czarnecki, Reyna Shaskan}
-
-
 \date{Post-AP Robotics Final Project}
 \maketitle
+
 \begin{abstract}
-For our final project, we decided to play around with low level programming
-and system design, so we decided to make our own operating system
-for the Cortex! It's inspired by {*}NIX systems, and runs on x86 processors
-(like the ones on our computers) and ARM processors (like the ones
-in the Cortex). It has support for traditional keyboard input and
-screen output and is also able to interface with the motors and sensors
-on the VeX system. It bosts far less bloat and faster response time
-than the pre-loaded OS on the Cortex. It's called BSOS because the
-letters sound nice and not for any other reason whatsoever.
+
 \end{abstract}
 
-\part{Booting Up}
+\section{Booting Up}
+BSOS's bootstrapping process can be classified by architecture. On x86 machines, specifically i386 and later, BSOS begins in 16-bit real mode. The strapping sector, which is 512 bytes long, then loads a general descriptor table, or GDT, into memory. That descriptor table is then used to switch the CPU into 32-bit protected mode, whereupon the kernel is loaded.
 
-\begin{lstlisting}
-Will's stuff goes here.
-\end{lstlisting}
-
-
-
-\part{Memory Management}
+\section{Memory Management}
 
 \begin{lstlisting}
 Pawe's stuff goes here.
@@ -52,7 +44,7 @@ Pawe's stuff goes here.
 
 
 
-\part{Running the OS}
+\section{Running the OS}
 
 \begin{lstlisting}
 Reyna's stuff goes here.
@@ -60,7 +52,7 @@ Reyna's stuff goes here.
 
 
 
-\part{Interfacing With Hardware}
+\section{Interfacing With Hardware}
 
 \begin{lstlisting}
 Gould's stuff goes here.
