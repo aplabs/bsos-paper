@@ -1,4 +1,6 @@
 # Ignore compiler output that isn't a PDF.
+*.log
 *.gz
 *.txt
 *.aux
+*.bak
