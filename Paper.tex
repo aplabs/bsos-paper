@@ -1,0 +1,69 @@
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{listings}
+\usepackage{geometry}
+\geometry{verbose,tmargin=1.47cm,bmargin=1.47cm,lmargin=1.47cm,rmargin=1.47cm}
+
+\makeatletter
+\pagestyle{empty}
+\usepackage{tikz}
+\usetikzlibrary{arrows,shadows} % for pgf-umlsd
+\usepackage[underline=true,rounded corners=false]{pgf-umlsd}
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+
+\title{BSOS}
+
+
+\author{Alexander Gould, William Woodruff, Pawe\l{} Czarnecki, Reyna Shaskan}
+
+
+\date{Post-AP Robotics Final Project}
+\maketitle
+\begin{abstract}
+For our final project, we decided to play around with low level programming
+and system design, so we decided to make our own operating system
+for the Cortex! It's inspired by {*}NIX systems, and runs on x86 processors
+(like the ones on our computers) and ARM processors (like the ones
+in the Cortex). It has support for traditional keyboard input and
+screen output and is also able to interface with the motors and sensors
+on the VeX system. It bosts far less bloat and faster response time
+than the pre-loaded OS on the Cortex. It's called BSOS because the
+letters sound nice and not for any other reason whatsoever.
+\end{abstract}
+
+\part{Booting Up}
+
+\begin{lstlisting}
+Will's stuff goes here.
+\end{lstlisting}
+
+
+
+\part{Memory Management}
+
+\begin{lstlisting}
+Pawe's stuff goes here.
+\end{lstlisting}
+
+
+
+\part{Running the OS}
+
+\begin{lstlisting}
+Reyna's stuff goes here.
+\end{lstlisting}
+
+
+
+\part{Interfacing With Hardware}
+
+\begin{lstlisting}
+Gould's stuff goes here.
+\end{lstlisting}
+
+\end{document}
