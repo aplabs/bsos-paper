@@ -33,7 +33,7 @@ in the Cortex). It has support for traditional keyboard input and
 screen output and is also able to interface with the motors and sensors
 on the VeX system. It bosts far less bloat and faster response time
 than the pre-loaded OS on the Cortex. It's called BSOS because the
-letters sound nice and not for any other reason whatsoever.
+letters sound nice and stand for Bronx Science and not for any other reason whatsoever.
 \end{abstract}
 
 \part{Booting Up}
@@ -69,12 +69,24 @@ Reyna's stuff goes here.
 There are 2 main components to input and output for this operating system, keyboard and screen, and motors and sensors.
 \paragraph{Keyboard and Screen}
 Information is se4nt from the keyboard to the processor via a standard protocol. Inside any commercial keyboard is a tiny computer chip
-called a {\it microcontroller}. When a key is pressed down, the microcontroller receives the signal and starts a short countdown timer. If
-your finger is still pressing down on the key after more than a millisecond, the microcontroller looks up a numerical value for the key
+called a {\it microcontroller}. When a key is pressed down, the microcontroller receives the signal and starts a short countdown timer. If your finger is still pressing down on the key after more than a millisecond, the microcontroller looks up a numerical value for the key
 and saves it in its small memory bank.
+\break
 \\The data is then sent to the computer along a cable, usually USB. At any given moment, power
 is passing through this cable to supply power to the keyboard, as well as to synchronize the keyboards internal timer. When the
-computer receives this data is sent to a program known as the {\it driver} for processing.
+computer receives this data is sent to a program known as the {\it driver} for processing. The driver interprets this information
+and sends it to the input stream of whatever program is currently running in the form of bytes, hexadecimal numbers representing
+letters, symbols and punctuation marks. The program then processes the information in a way that makes sense, be that displaying
+the symbol on a screen, saving it locally in a document, or interpretng it as a {\it control code}.
+\break
+\\A good example of this is the \texttt{CTRL+S} command. When you hold down the \texttt{CTRL} key, information is sent to the keyboard's onboard processor that that key is being held down. When you then press the \texttt{S} key, the numerical value for that key is sent for processing. The processor sees the code for the \texttt{S} key, but since the \texttt{CTRL} key is also held down, it changes the value sent to the computer to a control code. On your computer, the driver is monitoring continual packets of information sent in to the computer. Since the keyboard sends hundreds of these per second, most are empty. When one arrives with the control code you sent, the driver tells your operating system to process it. Your OS then tells your word processor. (Say it's your active window) When your word processor recieves this information, (Some OS'es will relay the control code directly, others will interpret it and send their own message) it then takes appropriate action and saves your document.
+\break
+\\The process works in reverse for display drivers. Since our OS uses a standard Video Graphics Array (VGA), I'll use that as an example.VGA monitors don't operate digitally like computers do, instead requiring a constant stream of electrons {\it analogous} to the image displayed, much like older TV's and radios. This poses a problem in that when programs send display data to your OS, your OS stores its images to output as digital files, long lists of discrete numbers. These two kinds of representing data don't play nice with each other, and it's the job of another driver to convert the signal.This driver takes the image, and splits it into red, green and blue elements, and stores it in its {\it video memory}. Think of the video memory as a canvas, a place where the driver draws what you see. After splitting the image into the three colors and drawing out each pixel as a combination of the three, the driver then sends the image as a set of analog signals, the same kind that travel to your cable box. For as long as the image in video memory remains unchanged, it keeps getting sent, and any changes to video memory are sent immediatley. Sending these signals continuously means that the image always stays on your monitor.
+\break
+\\Say we want to display a picture in the center of the screen. The program we use to do that, say ImageViewer or something, will take the picture data and send it to the OS in the form of digital values. How exactly depends on the image format and program you're using, but by the time the image gets to the OS, it's represented as a string of pixels. These pixels are then sent to the VGA driver, which breaks them down into red, green and blue values. Once that's done, it sends this information out through its pins in the form of analog signals, one color per pin, with extra pins used for time synchronization and error checking. These signals are directed via your monitor's onboard processor to their appropriate pixels, which light up in the colors you want. From a distance of a few inches, these colors blend to form your picture.
 \paragraph{Sensors and Motors}
+Information was originally sent from central control units to motors using a mechanism known as a {\it rheostat}. Basically, a rheostat was a long coil of wire. In order to get a motor to run at different speeds, current would be added at different points along the wire, and the amount of curent that wasn't dissipated by the wire drove the motor. While it was perfectly adequate in large machines, this approach doesn't work in robotics. While it's easy to set up, it takes up way too much space and dissipates way too much heat. 
+\break
+\\EXPLAIN PWM HERE
 
 \end{document}
