@@ -1,6 +1,7 @@
 \documentclass[english]{article}
 \usepackage[T1]{fontenc}
 \usepackage[latin9]{inputenc}
+\usepackage{graphicx}
 \usepackage{listings}
 \usepackage{geometry}
 \geometry{verbose,tmargin=1.47cm,bmargin=1.47cm,lmargin=1.47cm,rmargin=1.47cm}
@@ -37,11 +38,17 @@ letters sound nice and stand for Bronx Science and not for any other reason what
 \end{abstract}
 
 \part{Booting Up}
+BSOS's bootstrapping process can be classified by architecture. 
 
-\begin{lstlisting}
-Will's stuff goes here.
-\end{lstlisting}
+\paragraph{x86}
+On x86 machines, specifically i386 and later, BSOS begins in 16-bit real mode. The strapping sector, which is 512 bytes long, then loads a general descriptor table, or GDT, into memory. That descriptor table is then used to switch the CPU into 32-bit protected mode, whereupon the kernel is loaded.
+\begin{figure}[h!]
+\centerline{\includegraphics[scale=0.4]{imgs/boot_x86.png}}
+\caption{Figure 1: Bootstrapping on i386.}
+\end{figure}
 
+\paragraph{ARM}
+On ARM-based machines, specifically those with Cortex-M3 processors, the bootstrapping process [...]
 
 
 \part{Memory Management}
