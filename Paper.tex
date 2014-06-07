@@ -46,14 +46,12 @@ Will's stuff goes here.
 
 \part{Memory Management}
 
-\begin{lstlisting}
 \paragraph{Introduction}
 In all modern computer systems arrises the necessesity to manage resources, in particular memory. Because a typical general purpose computer
 may have many different programs running simulatneously it is crucial to have a subsystem that assigns memory regions to applications and keeps
 track of those regions. In the case of modern operating systems the implementation of such a system may be done so based on different principles.
 In a very simple Operating System which is responsible for managing resources for a small pool of applications the choice of paradigm does not have a large impact on system stability or performance.
 With simpliciy taken into account, the BSOS memory management system assigns variable sized blocks of memory to applications and keeps track of their status.
-\end{lstlisting}
 
 
 
@@ -87,6 +85,8 @@ the symbol on a screen, saving it locally in a document, or interpretng it as a 
 \paragraph{Sensors and Motors}
 Information was originally sent from central control units to motors using a mechanism known as a {\it rheostat}. Basically, a rheostat was a long coil of wire. In order to get a motor to run at different speeds, current would be added at different points along the wire, and the amount of curent that wasn't dissipated by the wire drove the motor. While it was perfectly adequate in large machines, this approach doesn't work in robotics. While it's easy to set up, it takes up way too much space and dissipates way too much heat. 
 \break
-\\EXPLAIN PWM HERE
+\\To solve this problem, modern servos use a system known as {\it Pulse Width Management} to regulate power sent to motors and sensors. The actual mechanics are somewhat complicated, but the principle itself is quite simple. Alternating current, as we know, can oscillate in many different patterns, triangle, square, sawtooth, what have you, but the most common form of oscillation is the simple quare wave, easy to convert to binary and simple to generate. What PWM does is power the motor with a quickly oscillating square wave AC current. In order to change the power supplied to the motor, the microcontroller varies the width of the pulses. In order to make the motor run faster, we make the "ON",or positive, portions of the wave longer, and the "OFF", or negative, portions shorter, raising the average value of the wave,which the motor interprets as more or less power. The opposite is true. By widening the "OFF" sections, we can slow the motor down. PWM also works for sensors. By sending back pulses of different widths, sensors can send us data about brightness, color or quantity. (Say, for a motor encoder.)
+\break
+\\Once all the drivers are in place and running, it's a simple matter to call their functionality from within the OS kernel, making the data sent and recieved readily usable by all programs on the device. (See section 3.)
 
 \end{document}
