@@ -37,11 +37,6 @@ than the pre-loaded OS on the Cortex. It's called BSOS because the
 letters sound nice and stand for Bronx Science and not for any other reason whatsoever.
 \end{abstract}
 
-\part{Booting Up}
-BSOS, as a portable and abstracted system, must be capable of bootstrapping on a variety of diverse and divergent architectures. Although hundreds exist, ranging from giants like x86, POWER, and ARM to lesser known embedded architectures like AVR and MIPS, the vast majority of fall into one of two families: CISC and RISC.
-
-CISC, or Complex Instruction Set Computing, began as a side effect of early computer development. As the (comparatively primitive) computers and calculators of the 1950s and 1960s became increasingly complex and multifunctional, they required new paradigms and methods of automation. Because languages like FORTRAN and ALGOL required a certain amount of boilerplate in order to operate, early system architects build complex control structures into the instruction sets of their machines, bridging the semantic gap between microcode-assembly and full-features programming languages.
-
 \part{Operating System Basics-Reyna}
 \paragraph{Theory}
 An Operating System has several different components. All software has to go through the OS in order for the user to be able to utilize any of the hardware. The kernel offers a basic level of control over doing this. The kernel manages memory access for programs in the RAM, determines which programs connect with which hardware, handles the CPU's operating states, organizes data in the long run, and orders processes in multi-tasking systems. Essentially, the kernel assigns memory space.
@@ -59,7 +54,9 @@ When a computer initially turns on, it runs in supervisor mode. The first progra
 An OS manages the interactions between hardware and software on the computer. The most common Operating Systems are Microsoft Windows, Mac OS X, and Linux.
 
 \part{Booting Up-William}
-BSOS's bootstrapping process can be classified by architecture. 
+BSOS, as a portable and abstracted system, must be capable of bootstrapping on a variety of diverse and divergent architectures. Although hundreds exist, ranging from giants like x86, POWER, and ARM to lesser known embedded architectures like AVR and MIPS, the vast majority of fall into one of two families: CISC and RISC.
+
+CISC, or Complex Instruction Set Computing, began as a side effect of early computer development. As the (comparatively primitive) computers and calculators of the 1950s and 1960s became increasingly complex and multifunctional, they required new paradigms and methods of automation. Because languages like FORTRAN and ALGOL required a certain amount of boilerplate in order to operate, early system architects build complex control structures into the instruction sets of their machines, bridging the semantic gap between microcode-assembly and full-features programming languages.
 
 \paragraph{x86}
 On x86 machines, specifically i386 and later, BSOS begins in 16-bit real mode. The strapping sector, which is 512 bytes long, then loads a general descriptor table, or GDT, into memory. That descriptor table is then used to switch the CPU into 32-bit protected mode, whereupon the kernel is loaded.
