@@ -32,7 +32,7 @@ for the Cortex! It's inspired by {*}NIX systems, and runs on x86 processors
 (like the ones on our computers) and ARM processors (like the ones
 in the Cortex). It has support for traditional keyboard input and
 screen output and is also able to interface with the motors and sensors
-on the VeX system. It bosts far less bloat and faster response time
+on the VEX system. It boasts far less bloat and faster response time
 than the pre-loaded OS on the Cortex. It's called BSOS because the
 letters sound nice and stand for Bronx Science and not for any other reason whatsoever.
 \end{abstract}
@@ -54,12 +54,16 @@ When a computer initially turns on, it runs in supervisor mode. The first progra
 An OS manages the interactions between hardware and software on the computer. The most common Operating Systems are Microsoft Windows, Mac OS X, and Linux.
 
 \part{Booting Up-William}
+\paragraph{}
 BSOS, as a portable and abstracted system, must be capable of bootstrapping on a variety of diverse and divergent architectures. Although hundreds exist, ranging from giants like x86, POWER, and ARM to lesser known embedded architectures like AVR and MIPS, the vast majority fall into one of two families: CISC and RISC.
 
+\paragraph{}
 CISC, or Complex Instruction Set Computing, began as a side effect of early computer development. As the (comparatively primitive) computers and calculators of the 1950s and 1960s became increasingly complex and multifunctional, they required new paradigms and methods of automation. Because languages like FORTRAN and ALGOL required a certain amount of boilerplate in order to operate, early system architects build complex control structures into the instruction sets of their machines, bridging the semantic gap between microcode-assembly and full-features programming languages. Because this approach to abstraction is relatively simple to implement, CISC quickly became the go-to approach for architecture design, eventually resulting in seminal processors like the MOS 6502, Zilog z80, and Intel 8086/8088.
 
+\paragraph{}
 Although CISC architectures are simple to implement, they have a number of downsides. Nowhere is this more apparent than in x86 family. AMD64, the most recent iteration in a long line of x86-based instruction sets, contains a truly massive number of opcodes, registers, and control structures. While this makes it very powerful and often very convenient, it also poses a major problem for programming and efficiency. Programmers who wish to write assembly for modern x86 platforms must memorize and utilize a vast array of confusing mnemonics, many of which are sparsely documented. Even compilers, which can take advantage of modern instructions and features through sheer force, have trouble fully exploiting x86's full feature set. Consequently, although programs can be specialized or drastically simplified through advanced structures within the architecture, they often perform poorly or inefficiently on CISC systems. 
 
+\paragraph{}
 RISC (Reduced Instruction Set Computing), which began formal development in the 1980s, is a solution to many of CISC's problems. Instead of providing a large collection of instructions for programmers to utilize, RISC systems strip the instruction set down to a bare minimum of operation, leaving only a few dozen simple opcodes (``primitives"). Additionally, those opcodes that remain follow strict cycle restrictions, rarely taking more than a single DMC (data memory cycle) to complete. This has two major side effects: simpler assembly programs, and the necessity of more abstraction between the user environment and the bare hardware. Although RISC CPU development is more recent than comparable CISC development, it is by no means unimportant. Architectures like DEC Alpha, SPARC, POWER, and ARM have become adopted in wide range of capacities, including supercomputers, mainframes, and mobile devices.
 
 Unfortunately, RISC is not without its downsides as well. Because RISC instruction sets contain opcodes that are designed to execute within a single memory cycle, they often outpace their own hardware and are bottlenecked by latency when reading from and writing to RAM. Many RISC CPUs compensate for this by providing a large on-die L1 cache for compilers and programmers to optimize with, but RAM access is still inefficient in relative to comparable CISC CPUs. Another significant downside is code expansion. When high level languages are compiled down to assembly, their advanced control structures and concepts must be translated into the native structures of the system. For example, a high level procedure like this:
@@ -79,22 +83,22 @@ The end result is an expansion of two high-level instructions into five low-leve
 
 With these fundamental differences in mind, we can turn to BSOS and its booting procedure on two key systems: i386 (a descendant of x86), and Cortex-M3 (a version of ARM).
 
-\paragraph{x86}
+\paragraph{}
 On x86 machines, specifically i386 and later, BSOS begins in 16-bit real mode. The strapping sector, which is 512 bytes long, then loads a general descriptor table, or GDT, into memory. That descriptor table is then used to switch the CPU into 32-bit protected mode, whereupon the kernel is loaded.
 \begin{figure}[h!]
 \centerline{\includegraphics[scale=0.4]{imgs/boot_x86.png}}
 \caption{Figure 1: Bootstrapping on i386.}
 \end{figure}
 
-\paragraph{ARM}
+\paragraph{}
 On ARM-based machines, specifically those with Cortex-M3 processors, the bootstrapping process is remarkably similar. Despite the RISC (Reduced Instruction Set Computing) nature of the ARM architecture
 
 
 \part{Memory Management- Pawe\l{}}
 
 \paragraph{Introduction}
-In all modern computer systems arrises the necessesity to manage resources, in particular memory. Because a typical general purpose computer
-may have many different programs running simulatneously it is crucial to have a subsystem that assigns memory regions to applications and keeps
+In all modern computer systems arises the necessity to manage resources, in particular memory. Because a typical general purpose computer
+may have many different programs running simultaneously it is crucial to have a subsystem that assigns memory regions to applications and keeps
 track of those regions. In the case of modern operating systems the implementation of such a system may be done so based on different principles.
 In a very simple Operating System which is responsible for managing resources for a small pool of applications the choice of paradigm does not have a large impact on system stability or performance.
 With simpliciy taken into account, the BSOS memory management system assigns variable sized blocks of memory to applications and keeps track of their status.
