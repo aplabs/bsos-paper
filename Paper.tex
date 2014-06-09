@@ -17,9 +17,7 @@
 
 \title{BSOS}
 
-
 \author{Alexander Gould, William Woodruff, Pawe\l{} Czarnecki, Reyna Shaskan}
-
 
 \date{Post-AP Robotics Final Project}
 \maketitle
@@ -57,11 +55,17 @@ Although CISC architectures are simple to implement, they have a number of downs
 RISC (Reduced Instruction Set Computing), which began formal development in the 1980s, is a solution to many of CISC's problems. Instead of providing a large collection of instructions for programmers to utilize, RISC systems strip the instruction set down to a bare minimum of operation, leaving only a few dozen simple opcodes known as \textit{primitives}. Additionally, those opcodes that remain follow strict cycle restrictions, rarely taking more than a single DMC (data memory cycle) to complete. This has two major side effects: simpler assembly programs, and the necessity of more abstraction between the user environment and the bare hardware. Although RISC CPU development is more recent than comparable CISC development, it is by no means unimportant. Architectures like DEC Alpha, SPARC, POWER, and ARM have become adopted in wide range of capacities, including supercomputers, mainframes, and mobile devices.
 
 Unfortunately, RISC is not without its downsides as well. Because RISC instruction sets contain opcodes that are designed to execute within a single memory cycle, they often outpace their own hardware and are bottlenecked by latency when reading from and writing to RAM. Many RISC CPUs compensate for this by providing a large on-die L1 cache for compilers and programmers to optimize with, but RAM access is still inefficient in relative to comparable CISC CPUs. Another significant downside is \textit{code expansion}. When high level languages are compiled down to assembly, their advanced control structures and concepts must be translated into the native structures of the system. For example, a high level procedure like this:
+\begin{center}
+\begin{tabular}{c}
 \begin{lstlisting}
 int a = 5, b = 3;
 swap(a, b);
 \end{lstlisting}
+\end{tabular}
+\end{center}
 might be expanded to something like this:
+\begin{center}
+\begin{tabular}{c}
 \begin{lstlisting}
 mov ax, 5
 mov bx, 3
@@ -69,6 +73,8 @@ xor ax, bx
 xor bx, ax
 xor ax, bx
 \end{lstlisting}
+\end{tabular}
+\end{center}
 The end result is an expansion of two high-level instructions into five low-level opcodes, an increase of 250\%. While this happens on all architectures simply due to the nature of abstraction, it is particularly pronounced on RISC systems due to the lack of complex, comprehensive opcodes.
 
 With these fundamental differences in mind, we can turn to BSOS and its booting procedure on two key systems: i386 (a descendant of x86), and Cortex-M3 (a version of ARM).
