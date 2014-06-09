@@ -25,7 +25,7 @@
 This paper details the key concepts and components of basic Operating System development, and applies them to the creation and application of BSOS, an experimental multiarchitecture system. In particular, the paper describes the innerworkings of the basic input-output system (BIOS), the standard bootstrapping procedure on x86 and ARM-based microprocessors, principles for interaction with system and external hardware, and proper resource management. BSOS itself can be applied, through the methodologies listed above, to a variety of limited-resource environments, most importantly the ARM-based VEX Cortex-M3 microcontroller used on a number of popular robotics kits. Ultimately, in combination with a framework based upon the already extant OpenVEX library, BSOS aims to become a complete replacement for simple operations on VEX robots.
 \end{abstract}
 
-\part{Operating System Basics}
+\part{Operating System Basics-Reyna}
 \paragraph{Theory}
 An Operating System has several different components. All software has to go through the OS in order for the user to be able to utilize any of the hardware. The kernel offers a basic level of control over doing this. The kernel manages memory access for programs in the RAM, determines which programs connect with which hardware, handles the CPU's operating states, organizes data in the long run, and orders processes in multi-tasking systems. Essentially, the kernel assigns memory space.
 
@@ -41,7 +41,7 @@ When a computer initially turns on, it runs in supervisor mode. The first progra
 \paragraph{Summary}
 An OS manages the interactions between hardware and software on the computer. The most common Operating Systems are Microsoft Windows, Mac OS X, and Linux.
 
-\part{Booting Up}
+\part{Booting Up-William}
 \paragraph{}
 BSOS, as a portable and abstracted system, must be capable of bootstrapping on a variety of diverse and divergent architectures. Although hundreds exist, ranging from giants like x86, POWER, and ARM to lesser known embedded architectures like AVR and MIPS, the vast majority fall into one of two families: \textit{CISC} and \textit{RISC}.
 
@@ -89,7 +89,7 @@ On x86 machines, specifically i386 and later, BSOS begins in 16-bit real mode. T
 \paragraph{}
 On ARM-based machines, specifically those with Cortex-M3 processors, the bootstrapping process is remarkably similar. Despite the RISC nature of the Cortex-M3, a similar chain of events takes place: the stack is set, the kernel is loaded from disk, and the system performs a far jump to the first instruction of the kernel, allowing it to take control.
 
-\part{Memory Management}
+\part{Memory ManagementPawe\l{}}
 
 \paragraph{Introduction}
 In all modern computer systems arises the necessity to manage resources, in particular memory. Because a typical general purpose computer
@@ -99,7 +99,7 @@ In a very simple Operating System which is responsible for managing resources fo
 With simplicity taken into account, the BSOS memory management system assigns variable sized blocks of memory to applications and keeps track of their status.
 
 
-\part{Interfacing With Hardware}
+\part{Interfacing With Hardware-Alex}
 There are 2 main components to input and output for this operating system, keyboard and screen, and motors and sensors.
 \paragraph{Keyboard and Screen}
 Information is sent from the keyboard to the processor via a standard protocol. Inside any commercial keyboard is a tiny computer chip
